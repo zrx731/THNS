@@ -31,7 +31,7 @@
   --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{
   font-family:var(--sans);
   font-size:15px;
@@ -39,6 +39,7 @@ body{
   color:var(--text);
   background:var(--paper);
   -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
 }
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
@@ -122,9 +123,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   position:absolute;z-index:1;border-radius:50%;
   pointer-events:none;filter:blur(28px);
 }
-.mist-1{width:60vmax;height:60vmax;left:-12%;top:8%;background:radial-gradient(circle,rgba(236,232,220,.10),transparent 70%);animation:thns-mist1 26s ease-in-out infinite alternate}
-.mist-2{width:50vmax;height:50vmax;right:-14%;top:38%;background:radial-gradient(circle,rgba(217,201,160,.10),transparent 70%);animation:thns-mist2 34s ease-in-out infinite alternate}
-.mist-3{width:55vmax;height:55vmax;left:18%;bottom:-18%;background:radial-gradient(circle,rgba(154,168,158,.10),transparent 70%);animation:thns-mist3 41s ease-in-out infinite alternate}
+.mist-1{width:70vmin;height:70vmin;max-width:680px;max-height:680px;left:-12%;top:8%;background:radial-gradient(circle,rgba(236,232,220,.10),transparent 70%);animation:thns-mist1 26s ease-in-out infinite alternate}
+.mist-2{width:58vmin;height:58vmin;max-width:560px;max-height:560px;right:-14%;top:38%;background:radial-gradient(circle,rgba(217,201,160,.10),transparent 70%);animation:thns-mist2 34s ease-in-out infinite alternate}
+.mist-3{width:64vmin;height:64vmin;max-width:620px;max-height:620px;left:18%;bottom:-18%;background:radial-gradient(circle,rgba(154,168,158,.10),transparent 70%);animation:thns-mist3 41s ease-in-out infinite alternate}
 @keyframes thns-mist1{from{transform:translate(0,0);opacity:.55}to{transform:translate(36px,-10px);opacity:1}}
 @keyframes thns-mist2{from{transform:translate(0,0);opacity:1}to{transform:translate(-30px,12px);opacity:.55}}
 @keyframes thns-mist3{from{transform:translate(0,0);opacity:.6}to{transform:translate(24px,-14px);opacity:1}}

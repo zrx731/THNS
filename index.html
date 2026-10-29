@@ -71,13 +71,14 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 }
 .nav-toggle svg{width:22px;height:22px}
 .nav-links{
-  display:none;list-style:none;gap:26px;align-items:center;
+  display:none;list-style:none;gap:22px;align-items:center;
 }
 .nav-links a{
   color:var(--muted-on-dark);font-size:14px;padding:6px 2px;
   border-bottom:1px solid transparent;min-height:44px;display:inline-flex;align-items:center;
 }
 .nav-links a:hover{color:var(--text-on-dark);border-bottom-color:var(--gold-soft)}
+.nav-links a.active{color:var(--text-on-dark);border-bottom-color:var(--cinnabar)}
 .nav-cta{
   display:none;
   background:var(--gold-soft);color:var(--ink);
@@ -104,14 +105,30 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   position:relative;
   min-height:88vh;
   display:flex;align-items:flex-end;
+  overflow:hidden;
   background:
     linear-gradient(180deg,rgba(23,32,27,.64) 0%,rgba(23,32,27,.10) 40%,rgba(23,32,27,.84) 100%),
-    url('assets/hero.jpg') center 30%/cover no-repeat,
     var(--ink);
   color:var(--text-on-dark);
   text-align:center;
 }
-.hero-inner{padding:120px 20px 56px;max-width:820px;margin:0 auto;width:100%}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:url('assets/hero.jpg') center 30%/cover no-repeat,var(--ink);
+  animation:thns-heroZoom 12s ease-in-out infinite alternate;
+}
+@keyframes thns-heroZoom{from{transform:scale(1)}to{transform:scale(1.06)}}
+.mist{
+  position:absolute;z-index:1;border-radius:50%;
+  pointer-events:none;filter:blur(28px);
+}
+.mist-1{width:60vmax;height:60vmax;left:-12%;top:8%;background:radial-gradient(circle,rgba(236,232,220,.10),transparent 70%);animation:thns-mist1 26s ease-in-out infinite alternate}
+.mist-2{width:50vmax;height:50vmax;right:-14%;top:38%;background:radial-gradient(circle,rgba(217,201,160,.10),transparent 70%);animation:thns-mist2 34s ease-in-out infinite alternate}
+.mist-3{width:55vmax;height:55vmax;left:18%;bottom:-18%;background:radial-gradient(circle,rgba(154,168,158,.10),transparent 70%);animation:thns-mist3 41s ease-in-out infinite alternate}
+@keyframes thns-mist1{from{transform:translate(0,0);opacity:.55}to{transform:translate(36px,-10px);opacity:1}}
+@keyframes thns-mist2{from{transform:translate(0,0);opacity:1}to{transform:translate(-30px,12px);opacity:.55}}
+@keyframes thns-mist3{from{transform:translate(0,0);opacity:.6}to{transform:translate(24px,-14px);opacity:1}}
+.hero-inner{position:relative;z-index:2;padding:120px 20px 56px;max-width:820px;margin:0 auto;width:100%}
 .hero-eyebrow{
   font-size:13px;letter-spacing:.26em;color:var(--gold-soft);
   margin-bottom:18px;text-transform:none;
@@ -132,20 +149,30 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   max-width:560px;margin:0 auto 30px;
 }
 .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero-eyebrow,.hero h1,.hero-en,.hero-lead,.hero-btns{animation:thns-fadeUp .6s ease-out both}
+.hero-eyebrow{animation-delay:.10s}
+.hero h1{animation-delay:.22s}
+.hero-en{animation-delay:.34s}
+.hero-lead{animation-delay:.46s}
+.hero-btns{animation-delay:.58s}
+@keyframes thns-fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;
   min-height:48px;padding:12px 28px;border-radius:980px;
   font-size:15px;letter-spacing:.06em;
-  transition:background .2s ease,color .2s ease;
+  transition:background .25s ease,color .25s ease,transform .25s ease;
 }
+.btn:hover{transform:translateY(-1px)}
 .btn-primary{background:var(--brand);color:#fff;font-weight:600}
 .btn-primary:hover{background:var(--brand-deep)}
 .btn-ghost{border:1px solid var(--ink-3);color:var(--text)}
 .btn-ghost:hover{background:rgba(23,32,27,.06)}
-.hero .btn-primary{background:var(--gold-soft);color:var(--ink)}
+.hero .btn-primary{background:var(--gold-soft);color:var(--ink);animation:thns-fadeUp .6s ease-out both,thns-breathe 3s ease-in-out infinite .6s}
 .hero .btn-primary:hover{background:var(--gold-soft-2)}
-.hero .btn-ghost{border:1px solid rgba(236,232,220,.55);color:var(--text-on-dark)}
+.hero .btn-ghost{border:1px solid rgba(236,232,220,.55);color:var(--text-on-dark);animation:thns-fadeUp .6s ease-out both .58s}
 .hero .btn-ghost:hover{background:rgba(236,232,220,.1)}
+.nav-cta{animation:thns-breathe 3s ease-in-out infinite}
+@keyframes thns-breathe{0%,100%{box-shadow:0 0 0 rgba(192,154,78,0)}50%{box-shadow:0 0 22px rgba(192,154,78,.45)}}
 
 /* ============ 通用分节节奏 ============ */
 section{padding:64px 0}
@@ -178,16 +205,34 @@ section{padding:64px 0}
 .bg-paper2 .headline{color:var(--text)}
 .bg-paper2 .intro{color:var(--muted)}
 
+/* 深墨节 */
+.bg-ink{background:var(--ink);color:var(--text-on-dark)}
+.bg-ink .eyebrow{color:var(--gold-soft)}
+.bg-ink .headline{color:var(--text-on-dark)}
+.bg-ink .intro{color:var(--muted-on-dark)}
+
+/* ============ reveal 滚动入场（渐进增强，默认可见） ============ */
+.reveal{transition:opacity .6s ease,transform .6s ease}
+.reveal-on .reveal{opacity:0;transform:translateY(24px)}
+.reveal-on .reveal.is-visible{opacity:1;transform:none}
+.reveal-on .stagger > .reveal:nth-child(2){transition-delay:.10s}
+.reveal-on .stagger > .reveal:nth-child(3){transition-delay:.20s}
+.reveal-on .stagger > .reveal:nth-child(4){transition-delay:.30s}
+.reveal-on .stagger > .reveal:nth-child(5){transition-delay:.40s}
+
 /* ============ 特色卡片（4 张：手机 1 列 / 平板 2 列 / 桌面 4 列） ============ */
 .cards{
   display:grid;grid-template-columns:1fr;gap:16px;
   margin-top:44px;
 }
 .card{
+  height:100%;
   border-radius:16px;padding:28px 24px;
   background:#fff;
   border:1px solid var(--hairline-light);
+  transition:transform .25s ease,box-shadow .25s ease;
 }
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(23,32,27,.12)}
 .card-icon{
   width:44px;height:44px;border-radius:10px;
   background:var(--brand-soft);
@@ -202,16 +247,42 @@ section{padding:64px 0}
 .card p{font-size:14px;line-height:1.85;color:var(--muted)}
 .card p strong{color:var(--brand-deep);font-weight:600}
 
+/* ============ 玩法全貌（五步循环） ============ */
+.steps5{
+  display:grid;grid-template-columns:1fr;gap:14px;
+  margin-top:44px;
+}
+.step5{
+  height:100%;
+  border:1px solid var(--hairline-light);
+  background:#fff;
+  border-radius:16px;padding:24px 20px;
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+.step5:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(23,32,27,.12)}
+.step5-num{
+  font-family:var(--serif);font-size:13px;color:var(--cinnabar);
+  letter-spacing:.14em;margin-bottom:10px;
+}
+.step5 h3{
+  font-family:var(--serif);font-size:18px;letter-spacing:.05em;
+  color:var(--text);margin-bottom:10px;
+}
+.step5 p{font-size:14px;line-height:1.85;color:var(--muted)}
+
 /* ============ 悟道体系（三步） ============ */
 .dao-steps{
   display:grid;grid-template-columns:1fr;gap:14px;
   margin-top:44px;
 }
 .dao-step{
+  height:100%;
   border:1px solid var(--hairline-light);
   background:#fff;
   border-radius:16px;padding:26px 22px;
+  transition:transform .25s ease,box-shadow .25s ease;
 }
+.dao-step:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(23,32,27,.12)}
 .dao-num{
   font-family:var(--serif);font-size:22px;color:var(--cinnabar);
   letter-spacing:.08em;margin-bottom:10px;
@@ -222,6 +293,55 @@ section{padding:64px 0}
 }
 .dao-step p{font-size:14px;line-height:1.85;color:var(--muted)}
 
+/* ============ 灵识 AI（深墨节） ============ */
+.lingshi-cards{
+  display:grid;grid-template-columns:1fr;gap:16px;
+  margin-top:44px;
+}
+.lingshi-card{
+  height:100%;
+  background:var(--ink-2);
+  border:1px solid rgba(217,201,160,.32);
+  border-radius:16px;padding:26px 22px;
+}
+.lingshi-card h3{
+  font-family:var(--serif);color:var(--gold-soft);
+  font-size:18px;letter-spacing:.05em;margin-bottom:10px;
+}
+.lingshi-card p{font-size:14px;line-height:1.85;color:var(--muted-on-dark)}
+.lingshi-do{margin-top:40px;border-top:1px solid var(--hairline-dark);padding-top:26px}
+.lingshi-do h3{
+  font-family:var(--serif);font-size:15px;letter-spacing:.14em;
+  color:var(--gold-soft);margin-bottom:12px;
+}
+.lingshi-do ul{list-style:none}
+.lingshi-do li{
+  padding:10px 0;border-bottom:1px solid var(--hairline-dark);
+  font-size:14px;color:var(--text-on-dark);line-height:1.8;
+}
+.lingshi-do li:last-child{border-bottom:none}
+.lingshi-fact{
+  margin-top:28px;padding:20px 22px;border-radius:14px;
+  background:var(--ink-2);
+  border:1px solid rgba(217,201,160,.32);
+  font-size:14px;line-height:1.9;color:var(--muted-on-dark);
+}
+.lingshi-fact strong{color:var(--gold-soft);font-weight:600}
+
+/* ============ 画面与表现（三行事实） ============ */
+.viz-list{margin-top:40px;border-top:1px solid var(--hairline-light)}
+.viz-row{
+  display:flex;gap:18px;align-items:baseline;
+  padding:22px 4px;border-bottom:1px solid var(--hairline-light);
+}
+.viz-num{
+  font-family:var(--serif);color:var(--cinnabar);
+  font-size:18px;flex:none;width:2.2em;letter-spacing:.08em;
+}
+.viz-row h3{font-size:16px;letter-spacing:.05em;margin-bottom:4px}
+.viz-row p{font-size:14px;color:var(--muted);line-height:1.85}
+.viz-row p strong{color:var(--brand-deep);font-weight:600}
+
 /* ============ 设计理念（五条红线） ============ */
 .redlines{margin-top:40px;border-top:1px solid var(--hairline-light)}
 .redline{
@@ -229,12 +349,74 @@ section{padding:64px 0}
   padding:20px 4px;border-bottom:1px solid var(--hairline-light);
 }
 .redline-glyph{
+  position:relative;
   font-family:var(--serif);color:var(--brand);
   font-size:18px;flex:none;width:1.6em;
 }
 .redline-glyph.forbid{color:var(--cinnabar)}
+.redline-glyph::after{
+  content:"";position:absolute;left:50%;top:50%;
+  width:1.3em;height:1.3em;margin:-.65em 0 0 -.65em;
+  border-radius:50%;border:1.5px solid currentColor;
+  opacity:0;pointer-events:none;
+}
+.redline-glyph:hover::after{animation:thns-inkDot .5s ease-out}
+@keyframes thns-inkDot{from{transform:scale(.2);opacity:.5}to{transform:scale(1.6);opacity:0}}
 .redline h3{font-size:16px;letter-spacing:.05em;margin-bottom:4px}
 .redline p{font-size:14px;color:var(--muted);line-height:1.8}
+.player-words{
+  margin-top:40px;max-width:720px;margin:40px auto 0;
+  border-left:3px solid var(--gold-soft);
+  padding:6px 0 6px 22px;
+}
+.player-words p{font-size:15px;line-height:2;color:var(--text);margin-bottom:14px}
+.player-words p:last-child{margin-bottom:0}
+
+/* ============ FAQ 手风琴 ============ */
+.faq-list{margin-top:40px;max-width:780px;margin-left:auto;margin-right:auto}
+.faq-item{border-bottom:1px solid var(--hairline-light)}
+.faq-item:first-child{border-top:1px solid var(--hairline-light)}
+.faq-q{
+  width:100%;display:flex;justify-content:space-between;align-items:center;
+  gap:16px;text-align:left;padding:18px 4px;
+  font-size:15.5px;font-weight:600;color:var(--text);font-family:inherit;
+  min-height:44px;
+}
+.faq-q .faq-arrow{flex:none;font-size:18px;color:var(--cinnabar);transition:transform .3s ease}
+.faq-item.open .faq-arrow{transform:rotate(45deg)}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+.faq-item.open .faq-a{grid-template-rows:1fr}
+.faq-a-inner{overflow:hidden}
+.faq-a p{padding:0 4px 18px;font-size:14.5px;line-height:1.9;color:var(--muted)}
+.faq-a strong{color:var(--brand-deep);font-weight:600}
+
+/* ============ 更新日志时间线 ============ */
+.cl-timeline{
+  margin-top:44px;max-width:720px;margin-left:auto;margin-right:auto;
+  position:relative;padding-left:28px;
+}
+.cl-timeline::before{
+  content:"";position:absolute;left:5px;top:8px;bottom:8px;width:2px;
+  background:var(--hairline-light);
+}
+.cl-item{position:relative;padding-bottom:30px}
+.cl-item:last-child{padding-bottom:0}
+.cl-item::before{
+  content:"";position:absolute;left:-28px;top:7px;
+  width:12px;height:12px;border-radius:50%;
+  background:var(--brand);transform:translateX(4px);
+}
+.cl-item.latest::before{background:var(--cinnabar)}
+.cl-item h3{
+  font-family:var(--serif);font-size:18px;letter-spacing:.06em;
+  margin-bottom:8px;
+}
+.cl-item ul{list-style:none}
+.cl-item li{
+  font-size:14px;color:var(--muted);line-height:1.9;
+  padding-left:16px;position:relative;
+}
+.cl-item li::before{content:"·";position:absolute;left:4px;color:var(--cinnabar)}
 
 /* ============ 下载 / 关于 ============ */
 .spec-table{
@@ -266,6 +448,7 @@ section{padding:64px 0}
 }
 .apk-actions{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
 .apk-note .apk-count{margin-top:14px;font-size:13px;color:var(--muted)}
+.apk-note .btn-primary{animation:thns-breathe 3s ease-in-out infinite}
 
 /* ============ 页脚 ============ */
 footer{
@@ -308,16 +491,25 @@ footer{
   .headline{font-size:42px}
   .intro{font-size:16px}
   .cards{grid-template-columns:repeat(2,1fr);gap:20px;margin-top:56px}
+  .steps5{grid-template-columns:repeat(5,1fr);gap:14px;margin-top:56px}
+  .step5{padding:22px 16px}
+  .step5 h3{font-size:16px}
   .dao-steps{grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
+  .lingshi-cards{grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
   .spec-row{flex-direction:row;justify-content:space-between;gap:24px;align-items:baseline}
   .spec-row dd{text-align:right}
 }
 @media (min-width:1024px){
   .cards{grid-template-columns:repeat(4,1fr)}
+  .step5:not(:last-child)::after{
+    content:"→";position:absolute;right:-15px;top:50%;
+    transform:translateY(-50%);color:var(--cinnabar);font-size:16px;z-index:1;
+  }
+  .step5{position:relative}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  *{transition:none!important}
+  *,*::before,*::after{animation:none!important;transition:none!important}
 }
 </style>
 </head>
@@ -342,8 +534,10 @@ footer{
     <ul class="nav-links" role="list">
       <li><a href="#top">首页</a></li>
       <li><a href="#features">特色</a></li>
-      <li><a href="#dao">悟道</a></li>
-      <li><a href="#philosophy">设计理念</a></li>
+      <li><a href="#gameplay">玩法</a></li>
+      <li><a href="#lingshi">灵识</a></li>
+      <li><a href="#philosophy">理念</a></li>
+      <li><a href="#faq">问答</a></li>
       <li><a href="#download">下载</a></li>
     </ul>
     <a class="nav-cta" href="#download">下载</a>
@@ -352,8 +546,10 @@ footer{
     <ul>
       <li><a href="#top">首页</a></li>
       <li><a href="#features">特色</a></li>
-      <li><a href="#dao">悟道</a></li>
-      <li><a href="#philosophy">设计理念</a></li>
+      <li><a href="#gameplay">玩法</a></li>
+      <li><a href="#lingshi">灵识</a></li>
+      <li><a href="#philosophy">理念</a></li>
+      <li><a href="#faq">问答</a></li>
       <li><a href="#download">下载</a></li>
     </ul>
   </nav>
@@ -363,6 +559,10 @@ footer{
 
 <!-- ===== 首屏 Hero ===== -->
 <section class="hero" aria-label="首屏">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="mist mist-1" aria-hidden="true"></div>
+  <div class="mist mist-2" aria-hidden="true"></div>
+  <div class="mist mist-3" aria-hidden="true"></div>
   <div class="hero-inner">
     <p class="hero-eyebrow">安卓单机修仙 · 国风仙侠版</p>
     <h1>道心衍灵</h1>
@@ -381,68 +581,177 @@ footer{
 <!-- ===== 核心特色 ===== -->
 <section class="bg-paper" id="features">
   <div class="wrap">
-    <div class="head-center">
+    <div class="head-center reveal">
       <p class="eyebrow">核心特色</p>
       <h2 class="headline">这游戏到底玩什么</h2>
       <p class="intro">安卓单机、纯 3D 国风仙侠、端侧灵识 AI、存档只在本地——下面四件事，是这款游戏的全部玩法。</p>
     </div>
-    <div class="cards">
-      <article class="card">
+    <div class="cards stagger">
+      <div class="reveal"><article class="card">
         <div class="card-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M3 19 L9 8 L13.5 14 L16 10 L21 19 Z"/><circle cx="17" cy="5.5" r="1.6"/></svg>
         </div>
         <h3>纯 3D 国风仙侠</h3>
         <p>固定俯视角的 3D 仙侠世界，画面由 <strong>Kotlin、Jetpack Compose 与 OpenGL ES</strong> 实时渲染，全部场景都在设备本地绘制。</p>
-      </article>
-      <article class="card">
+      </article></div>
+      <div class="reveal"><article class="card">
         <div class="card-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M12 3c-3 3-6 5-6 9a6 6 0 0 0 12 0c0-4-3-6-6-9Z"/><path d="M9.5 14.5c1 1.5 4 1.5 5 0"/></svg>
         </div>
         <h3>端侧灵识 AI</h3>
         <p>内置端侧大语言模型（<strong>llama.cpp</strong>）：Qwen1.5-0.5B 兜底，免下载、开箱即用，也可以进游戏下载更大的模型。灵识能陪你悟道推演、自由对谈，会记住你们聊过的话——<strong>它只陪伴，不替你作决定</strong>。</p>
-      </article>
-      <article class="card">
+      </article></div>
+      <div class="reveal"><article class="card">
         <div class="card-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v4.5l3 2.5"/></svg>
         </div>
         <h3>悟道体系</h3>
         <p>核心玩法是悟道：观想推演、心境抉择、道途修行。没有战力条，没有排行榜，修行进度由你每一次的选择决定。</p>
-      </article>
-      <article class="card">
+      </article></div>
+      <div class="reveal"><article class="card">
         <div class="card-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M12 3.5 L20 7v5c0 4.5-3.5 7.5-8 8.5C7.5 19.5 4 16.5 4 12V7Z"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
         <h3>单人单机闭环</h3>
         <p>全程纯本地运行，没有在线服务器，存档只保存在本机。不上传任何数据，断网也能正常玩。</p>
-      </article>
+      </article></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 玩法全貌（五步循环） ===== -->
+<section class="bg-inkwash" id="gameplay">
+  <div class="wrap">
+    <div class="head-center reveal">
+      <p class="eyebrow">玩法全貌</p>
+      <h2 class="headline">一局是怎么转起来的</h2>
+      <p class="intro">没有每日任务，没有体力条。你坐下来，从入道开始，一圈一圈走，走到想停为止。</p>
+    </div>
+    <div class="steps5 stagger">
+      <div class="reveal"><article class="step5">
+        <p class="step5-num">第一步</p>
+        <h3>开局入道</h3>
+        <p>我建一个角色，选一条初始的路，走进这个 3D 的仙侠世界。没有长动画逼着我跳，就是站定，先看一眼四周。</p>
+      </article></div>
+      <div class="reveal"><article class="step5">
+        <p class="step5-num">第二步</p>
+        <h3>观想推演</h3>
+        <p>遇到一道意境，我先自己静下来想。想不明白，灵识在旁边陪我往下推，把模糊的一团道理掰开，讲给我听。</p>
+      </article></div>
+      <div class="reveal"><article class="step5">
+        <p class="step5-num">第三步</p>
+        <h3>心境抉择</h3>
+        <p>岔路口到了，两边都说得通。我选一边，这个取舍就记进我的心境里——以后某个时候，它还会冒出来。</p>
+      </article></div>
+      <div class="reveal"><article class="step5">
+        <p class="step5-num">第四步</p>
+        <h3>道途修行</h3>
+        <p>选完接着走，观想、抉择再轮一圈。没有经验条在涨，我能察觉到的变化，是自己心里那些东西慢慢多了。</p>
+      </article></div>
+      <div class="reveal"><article class="step5">
+        <p class="step5-num">第五步</p>
+        <h3>传承轮回</h3>
+        <p>这一局走到头，可以重新来过。不是从零开始，上一局想过的、选过的，会跟着我进下一局。</p>
+      </article></div>
     </div>
   </div>
 </section>
 
 <!-- ===== 悟道体系 ===== -->
-<section class="bg-inkwash" id="dao">
+<section class="bg-paper" id="dao">
   <div class="wrap">
-    <div class="head-center">
+    <div class="head-center reveal">
       <p class="eyebrow">悟道体系</p>
       <h2 class="headline">修行不在数值，在心境</h2>
       <p class="intro">道途分三步：先观想，再抉择，后修行。每一步都由你亲手完成，灵识只在旁边对话、推演。</p>
     </div>
-    <div class="dao-steps">
-      <article class="dao-step">
+    <div class="dao-steps stagger">
+      <div class="reveal"><article class="dao-step">
         <p class="dao-num">壹</p>
         <h3>观想推演</h3>
         <p>面对一道意境，先静下来观想。灵识在旁边陪你推演其中的道理——它负责解释，不替你代劳。</p>
-      </article>
-      <article class="dao-step">
+      </article></div>
+      <div class="reveal"><article class="dao-step">
         <p class="dao-num">贰</p>
         <h3>心境抉择</h3>
         <p>岔路口没有标准答案。每一次取舍都会记入你的心境，由你自己承担。</p>
-      </article>
-      <article class="dao-step">
+      </article></div>
+      <div class="reveal"><article class="dao-step">
         <p class="dao-num">叁</p>
         <h3>道途修行</h3>
         <p>观想、抉择、修行，三者循环往复。游戏不设战力数字，进度只跟着你的选择走。</p>
-      </article>
+      </article></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 灵识 AI（深墨节） ===== -->
+<section class="bg-ink" id="lingshi">
+  <div class="wrap">
+    <div class="head-center reveal">
+      <p class="eyebrow">灵识 AI</p>
+      <h2 class="headline">它住在你手机里，不上云</h2>
+      <p class="intro">灵识是跑在你手机本地的端侧大模型。它能陪你聊天、推演、记事，但永远不会替你拿主意。</p>
+    </div>
+    <div class="lingshi-cards stagger">
+      <div class="reveal"><article class="lingshi-card">
+        <h3>悟道推演</h3>
+        <p>观想的时候卡住了，把意境丢给它。它顺着你的思路往下推，把一团模糊的想法理顺、拆开，讲给你听。</p>
+      </article></div>
+      <div class="reveal"><article class="lingshi-card">
+        <h3>自由对谈</h3>
+        <p>不聊修行也行。论道、闲聊，或者问它一些本来就没答案的问题，它都接得住。语气是一个陪你坐着的人，不是客服。</p>
+      </article></div>
+      <div class="reveal"><article class="lingshi-card">
+        <h3>记忆陪伴</h3>
+        <p>它记得你们之前聊过什么。上次说到哪儿、你卡在哪个意境，下次打开还在，不用从头再讲一遍。</p>
+      </article></div>
+    </div>
+    <div class="lingshi-do reveal">
+      <h3>它不做什么</h3>
+      <ul>
+        <li>不替你做选择——岔路口的决定，永远是你自己下的</li>
+        <li>不代练、不托管——没有“一键修行”，它不动手</li>
+        <li>不替你把题做完——它陪你想、陪你推，那一步终究是你迈</li>
+        <li>不上传你的对谈——说过的话，只留在这台手机上</li>
+      </ul>
+    </div>
+    <div class="lingshi-fact reveal">
+      内置 <strong>Qwen1.5-0.5B</strong> 兜底，装好就能用，不用额外下载；游戏内也可以下载更大的模型，换不换随你。全部经 <strong>llama.cpp</strong> 在端侧运行，不联网、不上传任何数据，对谈记录只在本机。
+    </div>
+  </div>
+</section>
+
+<!-- ===== 画面与表现 ===== -->
+<section class="bg-paper2" id="visuals">
+  <div class="wrap">
+    <div class="head-center reveal">
+      <p class="eyebrow">画面与表现</p>
+      <h2 class="headline">画面走的是素的路子</h2>
+      <p class="intro">三条事实，不多说。</p>
+    </div>
+    <div class="viz-list reveal">
+      <div class="viz-row">
+        <span class="viz-num">其一</span>
+        <div>
+          <h3>3D 渲染</h3>
+          <p>固定俯视角的 3D 国风仙侠世界，用 <strong>Kotlin、Jetpack Compose 与 OpenGL ES</strong> 在你设备上实时画出来，每一帧都不在服务器上。</p>
+        </div>
+      </div>
+      <div class="viz-row">
+        <span class="viz-num">其二</span>
+        <div>
+          <h3>国风美学</h3>
+          <p>颜色压得很稳——深墨、宣纸、黛青、朱砂，不抢戏。构图走写意的路子，不靠堆特效撑场面。</p>
+        </div>
+      </div>
+      <div class="viz-row">
+        <span class="viz-num">其三</span>
+        <div>
+          <h3>性能与离线</h3>
+          <p>全程端侧运行，没有在线服务器。断了网照样进游戏，灵识照样陪你推演。</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -450,54 +759,137 @@ footer{
 <!-- ===== 设计理念 ===== -->
 <section class="bg-paper" id="philosophy">
   <div class="wrap">
-    <div class="head-center">
+    <div class="head-center reveal">
       <p class="eyebrow">设计理念</p>
       <h2 class="headline">五条红线，先说好什么不做</h2>
       <p class="intro">动手开发之前，先把“什么不做”定下来。下面五条，开发期间一直守着。</p>
     </div>
     <div class="redlines">
-      <div class="redline">
+      <div class="redline reveal">
         <span class="redline-glyph forbid">禁</span>
         <div><h3>机械重复点击</h3><p>没有无穷无尽的点点点刷材料，每一次操作都对应明确的玩法。</p></div>
       </div>
-      <div class="redline">
+      <div class="redline reveal">
         <span class="redline-glyph forbid">禁</span>
         <div><h3>自动托管</h3><p>不设挂机托管，角色不会自己练级。修行必须亲手进行，游戏不代劳。</p></div>
       </div>
-      <div class="redline">
+      <div class="redline reveal">
         <span class="redline-glyph forbid">禁</span>
         <div><h3>数值战力碾压</h3><p>没有等级榜，没有战力数值。强弱不由数字决定，游戏只记录你的心境。</p></div>
       </div>
-      <div class="redline">
+      <div class="redline reveal">
         <span class="redline-glyph keep">守</span>
         <div><h3>单人单机闭环</h3><p>不设在线服务器，没有联网排行，存档只在本机。</p></div>
       </div>
-      <div class="redline">
+      <div class="redline reveal">
         <span class="redline-glyph keep">守</span>
         <div><h3>AI 纯陪伴</h3><p>灵识会聊天、会推演、会记住你说过的话，但永远不会替你做选择。</p></div>
+      </div>
+    </div>
+    <div class="player-words reveal">
+      <p>做这个游戏的时候，我一直在想一件事：修仙游戏为什么非得用战力数字说话。升级、刷装备、打榜——这套东西我熟，但它把“修行”硬生生做成了“肝”。我不想做那个。</p>
+      <p>所以这里没有等级，没有伤害数字，灵识也只在旁边陪你，不动手。单机、断网、存档只在你手机上，不是为了酷，是想让你玩的时候没人催、没人比、也没人在后台看着。坐半小时就半小时，放一周再回来，它还在原地等你。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 常见问题 ===== -->
+<section class="bg-inkwash" id="faq">
+  <div class="wrap">
+    <div class="head-center reveal">
+      <p class="eyebrow">常见问题</p>
+      <h2 class="headline">你们常问的几个问题</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">安装包多大？<span class="faq-arrow" aria-hidden="true">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>目前 0.0.19 这个 debug 构建的 APK 大约 <strong>401MB</strong>。下到手机上直接装就行。</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">什么手机能跑？<span class="faq-arrow" aria-hidden="true">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>安卓设备就行。模型跑在端侧，对配置有一定要求，但具体最低配置线我们还在摸，页面上不写死一个数字。装不上、或者跑起来卡，麻烦把你的机型和系统版本反馈给我们。</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">玩的时候要联网吗？<span class="faq-arrow" aria-hidden="true">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>不用。游戏全程本地运行，断网也能进。下载安装包那一次除外。</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">存档存在哪？<span class="faq-arrow" aria-hidden="true">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>只在你这台手机本机。没有账号，没有云存档——卸载游戏存档就没了，这一点想清楚再删。</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">以后会更新吗？<span class="faq-arrow" aria-hidden="true">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>会。0.0.19 起加了版本检测，游戏里会提示有新版本；GitHub Releases 上也能看到。</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">遇到 bug 怎么反馈？<span class="faq-arrow" aria-hidden="true">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>去 GitHub 仓库开 Issues，地址是 github.com/zrx731/THNS。说清楚你的机型、系统版本和怎么复现就行。</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">灵识那个 AI 能换吗？<span class="faq-arrow" aria-hidden="true">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>内置的是 <strong>Qwen1.5-0.5B</strong>，装好就能用，不用额外下载。进游戏之后也可以在里面下载更大的模型，换不换随你。</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 更新日志 ===== -->
+<section class="bg-paper2" id="changelog">
+  <div class="wrap">
+    <div class="head-center reveal">
+      <p class="eyebrow">更新日志</p>
+      <h2 class="headline">这几个版本改了什么</h2>
+    </div>
+    <div class="cl-timeline">
+      <div class="cl-item latest reveal">
+        <h3>v0.0.19</h3>
+        <ul>
+          <li>新增版本检测功能，游戏内可提示有新版本</li>
+          <li>修复与优化若干</li>
+        </ul>
+      </div>
+      <div class="cl-item reveal">
+        <h3>v0.0.18</h3>
+        <ul>
+          <li>修复跨生成内容雷同的问题</li>
+          <li>修复推演过程中占位 token 闪现的问题</li>
+          <li>修复与优化若干</li>
+        </ul>
+      </div>
+      <div class="cl-item reveal">
+        <h3>v0.0.17</h3>
+        <ul>
+          <li>修复与优化若干</li>
+        </ul>
+      </div>
+      <div class="cl-item reveal">
+        <h3>v0.0.15</h3>
+        <ul>
+          <li>修复与优化若干</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ===== 下载 / 关于 ===== -->
-<section class="bg-paper2" id="download">
+<section class="bg-paper" id="download">
   <div class="wrap">
-    <div class="head-center">
+    <div class="head-center reveal">
       <p class="eyebrow">下载与关于</p>
       <h2 class="headline">安装很简单</h2>
       <p class="intro">点击下方按钮，直接下载安卓 APK 安装包。游戏为纯本地运行的单机应用，下载后拷入安卓设备（或在手机上直接打开）即可安装。</p>
     </div>
-    <dl class="spec-table">
+    <dl class="spec-table reveal">
       <div class="spec-row"><dt>最新版本</dt><dd>0.0.19（debug 构建）</dd></div>
       <div class="spec-row"><dt>应用包名</dt><dd>com.thns.tao_heart_nurture_spirit</dd></div>
       <div class="spec-row"><dt>平台</dt><dd>Android 单机，纯本地运行</dd></div>
       <div class="spec-row"><dt>技术栈</dt><dd>Kotlin · Jetpack Compose · OpenGL ES · 端侧 llama.cpp</dd></div>
     </dl>
-    <div class="apk-note">
+    <div class="apk-note reveal">
       <p>点击下方按钮，直接下载 <strong>道心衍灵 0.0.19（debug 构建）</strong> APK 安装包（约 401MB）。</p>
       <div class="apk-actions">
-        <a class="btn btn-primary" href="https://github.com/zrx731/THNS/releases/download/v0.0.19/-0.0.19-debug.apk">下载 APK（0.0.19）</a>
+        <a class="btn btn-primary" href="https://github.com/zrx731/THNS/releases/download/v0.0.19/THNS-0.0.19-debug.apk">下载 APK（0.0.19）</a>
         <a class="btn btn-ghost" href="#top">回到首页</a>
       </div>
       <p class="apk-count">累计下载次数：<span id="downloadCount">--</span></p>
@@ -512,8 +904,13 @@ footer{
   <div class="wrap">
     <ul class="foot-links" role="list">
       <li><a href="#features">核心特色</a></li>
+      <li><a href="#gameplay">玩法全貌</a></li>
       <li><a href="#dao">悟道体系</a></li>
+      <li><a href="#lingshi">灵识 AI</a></li>
+      <li><a href="#visuals">画面与表现</a></li>
       <li><a href="#philosophy">设计理念</a></li>
+      <li><a href="#faq">常见问题</a></li>
+      <li><a href="#changelog">更新日志</a></li>
       <li><a href="#download">下载与关于</a></li>
     </ul>
     <p class="foot-fine">
@@ -530,6 +927,10 @@ footer{
 <script>
 (function(){
   "use strict";
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var supportsIO = 'IntersectionObserver' in window;
+
+  /* ---- 移动端抽屉（原样保留） ---- */
   var toggle = document.getElementById('navToggle');
   var tray = document.getElementById('navTray');
 
@@ -545,6 +946,7 @@ footer{
     });
   });
 
+  /* ---- Toast（原样保留） ---- */
   var toast = document.getElementById('toast');
   var toastTimer = null;
   function showToast(msg){
@@ -554,7 +956,7 @@ footer{
     toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 2600);
   }
 
-  // 累计下载次数：读取 GitHub Release 资产下载数（API 不可用时静默降级，保持显示 --）
+  /* ---- 累计下载次数：读取 GitHub Release 资产下载数（API 不可用时静默降级） ---- */
   var countEl = document.getElementById('downloadCount');
   if (countEl) {
     fetch('https://api.github.com/repos/zrx731/THNS/releases/latest')
@@ -566,6 +968,64 @@ footer{
       })
       .catch(function(){ /* 静默降级 */ });
   }
+
+  /* ---- 滚动入场 reveal：仅在支持 IO 且非 reduced-motion 时启用（默认元素全部可见） ---- */
+  if (supportsIO && !reduceMotion) {
+    document.documentElement.classList.add('reveal-on');
+    var revealEls = document.querySelectorAll('.reveal');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(function(el){ io.observe(el); });
+
+    /* ---- 轻量 scrollspy：进入视口时高亮对应导航项 ---- */
+    var navAnchors = ['top','features','gameplay','lingshi','philosophy','faq','download'];
+    var linkMap = {};
+    document.querySelectorAll('.nav-links a').forEach(function(a){
+      var h = a.getAttribute('href');
+      if (h && h.charAt(0) === '#') linkMap[h.slice(1)] = a;
+    });
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        var key = e.target.id;
+        var link = linkMap[key];
+        if (!link) return;
+        if (e.isIntersecting) {
+          document.querySelectorAll('.nav-links a.active').forEach(function(a){ a.classList.remove('active'); });
+          link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    navAnchors.forEach(function(id){
+      var sec = document.getElementById(id);
+      if (sec) spy.observe(sec);
+    });
+  } else {
+    /* 无 IO / reduced-motion：直接放行，全部可见 */
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  /* ---- FAQ 手风琴：一次只开一个，过渡 ≤0.3s ---- */
+  document.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.parentElement;
+      var wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(o){
+        o.classList.remove('open');
+        var q = o.querySelector('.faq-q');
+        if (q) q.setAttribute('aria-expanded','false');
+      });
+      if (!wasOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
 })();
 </script>
 <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>玩法介绍 · 道心衍灵 0.0.23 — 安卓单机修仙游戏</title>
-<meta name="description" content="道心衍灵（0.0.23）玩法介绍：修行境界、秘境探索、回合制战斗、灵识对谈、渡劫心魔、道途抉择、丹道配比。" />
+<title>玩法介绍 · 道心衍灵 0.0.24 — 安卓单机修仙游戏</title>
+<meta name="description" content="道心衍灵（0.0.24）玩法介绍：修行境界、秘境探索、回合制战斗、灵识对谈、渡劫心魔、道途抉择、丹道配比、成就体系、心魔试炼塔。" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2316241e'/%3E%3Cpath d='M7 22 L13 11 L18 18 L21 14 L25 22 Z' fill='none' stroke='%23c09a4e' stroke-width='1.8' stroke-linejoin='round'/%3E%3Ccircle cx='22' cy='9' r='2.2' fill='%233e7d6b'/%3E%3C/svg%3E" />
 <style>
 :root{
@@ -180,7 +180,7 @@ footer{background:var(--ink);color:var(--muted-on-dark);border-top:1px solid var
 </header>
 
 <div class="page-head">
-  <p class="eyebrow">玩法介绍 · 对应版本 0.0.23</p>
+  <p class="eyebrow">玩法介绍 · 对应版本 0.0.24</p>
   <h1>这一局，到底有哪些事可以做</h1>
   <p>下面只讲当前版本里<strong style="color:var(--gold-soft)">已经实装</strong>的系统。每一项都写清楚"怎么玩"和"它的特色"，没有概念宣传，也没有规划中的东西。</p>
 </div>
@@ -193,6 +193,8 @@ footer{background:var(--ink);color:var(--muted-on-dark);border-top:1px solid var
   <a class="chip" href="#sys-lingshi">灵识对谈</a>
   <a class="chip" href="#sys-path">道途抉择</a>
   <a class="chip" href="#sys-alchemy">丹道配比</a>
+  <a class="chip" href="#sys-achieve">成就体系</a>
+  <a class="chip" href="#sys-trial">心魔试炼</a>
   <a class="chip" href="#sys-redline">设计红线</a>
 </nav>
 
@@ -337,6 +339,43 @@ footer{background:var(--ink);color:var(--muted-on-dark);border-top:1px solid var
   </div>
 </section>
 
+<!-- 成就体系 + 心魔试炼塔（0.0.24 新增） -->
+<section class="bg-paper2">
+  <div class="wrap">
+    <div class="head-center">
+      <p class="eyebrow">长进与考验</p>
+      <h2 class="headline">五、成就体系与心魔试炼（0.0.24 新增）</h2>
+      <p class="intro">0.0.24 起新增两套系统：一套记录你走过的路（成就），一套检验你走过的心（心魔试炼塔）。都只为见证，不为攀比。</p>
+    </div>
+    <div class="sys-grid">
+      <article class="sys" id="sys-achieve">
+        <p class="sys-tag">系统其八</p>
+        <h3>成就体系</h3>
+        <h4>怎么玩</h4>
+        <p>成就按七册分类：<strong>境界、战斗、秘境、灵识、丹道、道途、道德修身</strong>，共 36 条。达成条件解锁后，会弹出<strong>水墨风解锁横幅</strong>并记入进度树；部分成就是<strong>隐藏成就</strong>，靠探索与心性去发现。</p>
+        <h4>特色</h4>
+        <ul>
+          <li>专设<strong>道德修身册</strong>：慈悲、济世、克己、守正、三省、洗心——以正向成就引导心性修养</li>
+          <li>奖励是<strong>荣誉</strong>（印章、称号、警句），不附带任何属性，不产生数值碾压</li>
+          <li>成就是里程见证，不是收集任务：没有"全收集"压力，也不鼓励刷点</li>
+        </ul>
+      </article>
+      <article class="sys" id="sys-trial">
+        <p class="sys-tag">系统其九</p>
+        <h3>心魔试炼塔</h3>
+        <h4>怎么玩</h4>
+        <p>共 <strong>9 层</strong>，需<strong>手动逐层</strong>挑战。第 3 / 6 / 9 层是双机制层（罡气 / 映照 / 狂暴两两组合），越往上机制越复杂。击败守层心魔，获得对应奖励。</p>
+        <h4>特色</h4>
+        <ul>
+          <li><strong>首通全额奖励</strong>，重复通关只拿部分回酬——不鼓励反复刷</li>
+          <li>复用主战斗规则与数值公式，不另立一套碾压数值</li>
+          <li>没有托管、没有自动挂机：每一层都要你亲自出招</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- 红线 -->
 <section class="bg-inkwash" id="sys-redline">
   <div class="wrap">
@@ -372,7 +411,7 @@ footer{background:var(--ink);color:var(--muted-on-dark);border-top:1px solid var
       <li><a href="index.html#download">下载</a></li>
     </ul>
     <p class="foot-fine">
-      道心衍灵 · Tao Heart Nurture Spirit —— 安卓单机修仙游戏。本页内容对应 0.0.23 已实装系统，未实装内容不在此介绍。
+      道心衍灵 · Tao Heart Nurture Spirit —— 安卓单机修仙游戏。本页内容对应 0.0.24 已实装系统，未实装内容不在此介绍。
     </p>
   </div>
 </footer>

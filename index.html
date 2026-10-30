@@ -456,6 +456,9 @@ section{padding:64px 0}
 .apk-actions{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
 .apk-note .apk-count{margin-top:14px;font-size:13px;color:var(--muted)}
 .apk-note .btn-primary{animation:thns-breathe 3s ease-in-out infinite}
+.apk-note .mirror-block{margin-top:18px;padding-top:16px;border-top:1px dashed var(--brand)}
+.apk-note .mirror-title{font-size:13px;font-weight:600;color:var(--brand-deep)}
+.apk-note .mirror-hint{margin-top:10px;font-size:13px;color:var(--muted)}
 
 /* ============ 页脚 ============ */
 footer{
@@ -929,6 +932,14 @@ footer{
       <div class="apk-actions">
         <a class="btn btn-primary" href="https://github.com/zrx731/THNS/releases/download/v0.0.22/THNS-0.0.22-release.apk">下载 APK（0.0.22）</a>
         <a class="btn btn-ghost" href="#top">回到首页</a>
+      </div>
+      <div class="mirror-block">
+        <p class="mirror-title">国内镜像下载 · 公共加速通道</p>
+        <div class="apk-actions">
+          <a class="btn btn-primary" href="https://ghfast.top/https://github.com/zrx731/THNS/releases/download/v0.0.22/THNS-0.0.22-release.apk">国内加速 · 推荐</a>
+          <a class="btn btn-ghost" href="https://gh-proxy.com/https://github.com/zrx731/THNS/releases/download/v0.0.22/THNS-0.0.22-release.apk">备用通道</a>
+        </div>
+        <p class="mirror-hint">国内公共加速通道，遇失效或限速请改用上方 GitHub 官方直链。</p>
       </div>
       <p class="apk-count">累计下载次数：<span id="downloadCount">--</span></p>
     </div>

@@ -485,6 +485,57 @@ footer{
 }
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
+/* ============ 历史版本下载（可扩展行） ============ */
+.hist{margin-top:56px}
+.hist-head{margin-bottom:20px}
+.hist-list{border-top:1px solid var(--hairline-light)}
+.hist-row{
+  display:flex;flex-direction:column;gap:10px;
+  padding:20px 4px;border-bottom:1px solid var(--hairline-light);
+}
+.hist-row:last-child{border-bottom:none}
+.hist-meta{display:flex;flex-direction:column;gap:2px}
+.hist-ver{font-family:var(--serif);font-size:18px;letter-spacing:.05em;color:var(--text)}
+.hist-date{font-size:13px;color:var(--muted);letter-spacing:.05em}
+.hist-desc{font-size:13.5px;line-height:1.8;color:var(--muted)}
+.hist-actions{display:flex;gap:10px;flex-wrap:wrap}
+.hist-actions .btn{min-height:44px;padding:10px 18px;font-size:13.5px}
+
+/* ============ 联系反馈 / 模板生成器 ============ */
+.fb-card{
+  margin-top:40px;border:1px solid var(--hairline-light);
+  background:#fff;border-radius:16px;padding:24px 20px;
+}
+.fb-field{margin-bottom:18px}
+.fb-field label{
+  display:block;font-size:13px;letter-spacing:.08em;font-weight:600;
+  color:var(--brand-deep);margin-bottom:8px;
+}
+.fb-field select,.fb-field textarea{
+  width:100%;min-height:44px;
+  border:1px solid var(--hairline-light);border-radius:10px;
+  background:var(--paper);color:var(--text);
+  font-family:inherit;font-size:14.5px;line-height:1.8;
+  padding:10px 12px;
+}
+.fb-field textarea{min-height:96px;resize:vertical}
+.fb-field select:focus,.fb-field textarea:focus{
+  outline:2px solid var(--brand);outline-offset:0;border-color:var(--brand);
+}
+.fb-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:4px}
+.fb-actions .btn{min-height:44px}
+.fb-out{
+  margin-top:18px;border-radius:12px;padding:16px 18px;
+  background:var(--inkwash);border:1px dashed var(--brand);
+  font-size:14px;line-height:1.95;color:var(--text);
+  white-space:pre-wrap;word-break:break-word;min-height:60px;
+}
+.fb-issues{margin-top:18px;font-size:14px;color:var(--muted);line-height:1.9}
+.fb-issues a{
+  color:var(--brand-deep);text-decoration:underline;text-underline-offset:3px;
+  min-height:44px;display:inline-flex;align-items:center;
+}
+
 /* ============ 桌面断点 ≥768px ============ */
 @media (min-width:768px){
   body{font-size:16px}
@@ -508,6 +559,10 @@ footer{
   .lingshi-cards{grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
   .spec-row{flex-direction:row;justify-content:space-between;gap:24px;align-items:baseline}
   .spec-row dd{text-align:right}
+  .hist-row{flex-direction:row;align-items:center;gap:24px}
+  .hist-meta{flex:none;width:180px}
+  .hist-desc{flex:1}
+  .fb-card{padding:32px 36px}
 }
 @media (min-width:1024px){
   .cards{grid-template-columns:repeat(4,1fr)}
@@ -543,11 +598,13 @@ footer{
     </button>
     <ul class="nav-links" role="list">
       <li><a href="#top">首页</a></li>
+      <li><a href="play.html">玩法介绍</a></li>
       <li><a href="#features">特色</a></li>
       <li><a href="#gameplay">玩法</a></li>
       <li><a href="#lingshi">灵识</a></li>
       <li><a href="#philosophy">理念</a></li>
       <li><a href="#faq">问答</a></li>
+      <li><a href="#contact">反馈</a></li>
       <li><a href="#download">下载</a></li>
     </ul>
     <a class="nav-cta" href="#download">下载</a>
@@ -555,11 +612,13 @@ footer{
   <nav class="nav-tray" id="navTray" aria-label="站点导航">
     <ul>
       <li><a href="#top">首页</a></li>
+      <li><a href="play.html">玩法介绍</a></li>
       <li><a href="#features">特色</a></li>
       <li><a href="#gameplay">玩法</a></li>
       <li><a href="#lingshi">灵识</a></li>
       <li><a href="#philosophy">理念</a></li>
       <li><a href="#faq">问答</a></li>
+      <li><a href="#contact">反馈</a></li>
       <li><a href="#download">下载</a></li>
     </ul>
   </nav>
@@ -582,7 +641,8 @@ footer{
       不联网、无排行，存档只留在本机。
     </p>
     <div class="hero-btns">
-      <a class="btn btn-primary" href="#download">下载 v0.0.22</a>
+      <a class="btn btn-primary" href="#download">下载 v0.0.23</a>
+      <a class="btn btn-ghost" href="play.html">玩法介绍</a>
       <a class="btn btn-ghost" href="#features">了解特色</a>
     </div>
   </div>
@@ -813,7 +873,7 @@ footer{
     <div class="faq-list reveal">
       <div class="faq-item">
         <button class="faq-q" type="button" aria-expanded="false">安装包多大？<span class="faq-arrow" aria-hidden="true">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>目前 0.0.22 这个正式签名的 APK 大约 <strong>389MB</strong>。下到手机上直接装就行。</p></div></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>目前 0.0.23 这个正式签名的 APK 大约 <strong>389MB</strong>（与上一版相近）。下到手机上直接装就行。</p></div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" type="button" aria-expanded="false">什么手机能跑？<span class="faq-arrow" aria-hidden="true">+</span></button>
@@ -857,6 +917,18 @@ footer{
     </div>
     <div class="cl-timeline">
       <div class="cl-item latest reveal">
+        <h3>v0.0.23</h3>
+        <ul>
+          <li>灵识对谈：横屏双栏布局优化，并对对话数据做清洗，长对谈更清爽</li>
+          <li>道途抉择先行版：四轴倾向（刚毅/逍遥/慈悲/执念）累积，附道途称号；每一次抉择的反馈都附正向道德启迪</li>
+          <li>丹道配比：灵草配比炼丹，失败不受任何惩罚、全程确定性无随机</li>
+          <li>主菜单返回键：确认后再退出，避免误触</li>
+          <li>敌人类型差异化：三种模板、平均强度与基线持平，无数值碾压</li>
+          <li>性能微优化（attribLocation 缓存、粒子帧计数、快照限长）；工程健康清理（deprecation 清理、默认值防线）</li>
+          <li>设计初衷：帮助玩家在游戏中不违反道德，主动提升道德素养</li>
+        </ul>
+      </div>
+      <div class="cl-item reveal">
         <h3>v0.0.22</h3>
         <ul>
           <li>稳定性：修复内存泄漏、存档写盘竞态、对话列表无界增长、连点重复消耗、纹理句柄泄漏、损坏存档越界等 10 项</li>
@@ -922,26 +994,92 @@ footer{
       <p class="intro">点击下方按钮，直接下载安卓 APK 安装包。游戏为纯本地运行的单机应用，下载后拷入安卓设备（或在手机上直接打开）即可安装。</p>
     </div>
     <dl class="spec-table reveal">
-      <div class="spec-row"><dt>最新版本</dt><dd>0.0.22（正式签名构建）</dd></div>
+      <div class="spec-row"><dt>最新版本</dt><dd>0.0.23（正式签名构建）</dd></div>
       <div class="spec-row"><dt>应用包名</dt><dd>com.thns.tao_heart_nurture_spirit</dd></div>
       <div class="spec-row"><dt>平台</dt><dd>Android 单机，纯本地运行</dd></div>
       <div class="spec-row"><dt>技术栈</dt><dd>Kotlin · Jetpack Compose · OpenGL ES · 端侧 llama.cpp</dd></div>
     </dl>
     <div class="apk-note reveal">
-      <p>点击下方按钮，直接下载 <strong>道心衍灵 0.0.22（正式签名构建）</strong> APK 安装包（约 389MB）。</p>
+      <p>点击下方按钮，直接下载 <strong>道心衍灵 0.0.23（正式签名构建）</strong> APK 安装包（约 389MB）。</p>
       <div class="apk-actions">
-        <a class="btn btn-primary" href="https://github.com/zrx731/THNS/releases/download/v0.0.22/THNS-0.0.22-release.apk">下载 APK（0.0.22）</a>
+        <a class="btn btn-primary" href="https://github.com/zrx731/THNS/releases/download/v0.0.23/THNS-0.0.23-release.apk">下载 APK（0.0.23）</a>
         <a class="btn btn-ghost" href="#top">回到首页</a>
       </div>
       <div class="mirror-block">
         <p class="mirror-title">国内镜像下载 · 公共加速通道</p>
         <div class="apk-actions">
-          <a class="btn btn-primary" href="https://ghfast.top/https://github.com/zrx731/THNS/releases/download/v0.0.22/THNS-0.0.22-release.apk">国内加速 · 推荐</a>
-          <a class="btn btn-ghost" href="https://gh-proxy.com/https://github.com/zrx731/THNS/releases/download/v0.0.22/THNS-0.0.22-release.apk">备用通道</a>
+          <a class="btn btn-primary" href="https://ghfast.top/https://github.com/zrx731/THNS/releases/download/v0.0.23/THNS-0.0.23-release.apk">国内加速 · 推荐</a>
+          <a class="btn btn-ghost" href="https://gh-proxy.com/https://github.com/zrx731/THNS/releases/download/v0.0.23/THNS-0.0.23-release.apk">备用通道</a>
         </div>
         <p class="mirror-hint">国内公共加速通道，遇失效或限速请改用上方 GitHub 官方直链。</p>
       </div>
       <p class="apk-count">累计下载次数：<span id="downloadCount">--</span></p>
+    </div>
+
+    <!-- ===== 历史版本下载（每条记录 = 版本号 + 日期 + 下载按钮，后续每版追加一行） ===== -->
+    <div class="hist reveal" id="history">
+      <div class="hist-head head-center">
+        <p class="eyebrow">历史版本</p>
+        <h3 class="headline" style="font-size:24px;margin-bottom:6px">历史版本下载</h3>
+        <p class="intro" style="font-size:14px">历史版本仅供尝鲜或回退使用，建议下载最新版。</p>
+      </div>
+      <div class="hist-list">
+        <div class="hist-row">
+          <div class="hist-meta">
+            <span class="hist-ver">v0.0.23</span>
+            <span class="hist-date">发布于 2026-10-30</span>
+          </div>
+          <p class="hist-desc">当前最新正式版。历史版本仅供尝鲜或回退使用，建议下载最新版。</p>
+          <div class="hist-actions">
+            <a class="btn btn-primary" href="https://github.com/zrx731/THNS/releases/download/v0.0.23/THNS-0.0.23-release.apk">GitHub 直链</a>
+            <a class="btn btn-ghost" href="https://ghfast.top/https://github.com/zrx731/THNS/releases/download/v0.0.23/THNS-0.0.23-release.apk">镜像加速</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 联系反馈（含反馈模板生成器，纯前端） ===== -->
+<section class="bg-inkwash" id="contact">
+  <div class="wrap">
+    <div class="head-center reveal">
+      <p class="eyebrow">联系反馈</p>
+      <h2 class="headline">遇到问题？帮你把话写顺</h2>
+      <p class="intro">选好功能模块、写一句你遇到的问题，下面会实时生成一段完整反馈文案；一键复制后，贴到 GitHub Issues 即可。</p>
+    </div>
+    <div class="fb-card reveal">
+      <div class="fb-field">
+        <label for="fbModule">功能模块</label>
+        <select id="fbModule">
+          <option value="灵识对谈/悟道抉择">灵识对谈 / 悟道抉择</option>
+          <option value="秘境探索">秘境探索</option>
+          <option value="战斗">战斗</option>
+          <option value="渡劫与心魔">渡劫与心魔</option>
+          <option value="道途抉择">道途抉择</option>
+          <option value="丹药/丹道配比">丹药 / 丹道配比</option>
+          <option value="官网下载/页面">官网下载 / 页面</option>
+        </select>
+      </div>
+      <div class="fb-field">
+        <label for="fbCommon">常见问题（可选，选中自动回填到下方描述）</label>
+        <select id="fbCommon">
+          <option value="">不选 / 我自己写</option>
+          <option value="界面错乱或文字异常">界面错乱 / 文字异常</option>
+          <option value="功能无响应或闪退">功能无响应 / 闪退</option>
+          <option value="数值或平衡问题">数值 / 平衡问题</option>
+          <option value="其他问题">其他</option>
+        </select>
+      </div>
+      <div class="fb-field">
+        <label for="fbDesc">问题状况</label>
+        <textarea id="fbDesc" placeholder="请描述遇到的问题"></textarea>
+      </div>
+      <div class="fb-actions">
+        <button class="btn btn-primary" type="button" id="fbCopy">复制反馈文案</button>
+      </div>
+      <div class="fb-out" id="fbOut" aria-live="polite"></div>
+      <p class="fb-issues">准备好后，<a href="https://github.com/zrx731/THNS/issues" target="_blank" rel="noopener">点击前往 GitHub Issues 提交反馈</a>。</p>
     </div>
   </div>
 </section>
@@ -952,6 +1090,7 @@ footer{
 <footer>
   <div class="wrap">
     <ul class="foot-links" role="list">
+      <li><a href="play.html">玩法介绍</a></li>
       <li><a href="#features">核心特色</a></li>
       <li><a href="#gameplay">玩法全貌</a></li>
       <li><a href="#dao">悟道体系</a></li>
@@ -960,11 +1099,13 @@ footer{
       <li><a href="#philosophy">设计理念</a></li>
       <li><a href="#faq">常见问题</a></li>
       <li><a href="#changelog">更新日志</a></li>
+      <li><a href="#history">历史版本</a></li>
+      <li><a href="#contact">联系反馈</a></li>
       <li><a href="#download">下载与关于</a></li>
     </ul>
     <p class="foot-fine">
       道心衍灵 · Tao Heart Nurture Spirit —— 安卓单机修仙游戏（国风仙侠版）。
-      本页面为游戏官方介绍页。最新版本 0.0.22，包名 com.thns.tao_heart_nurture_spirit。
+      本页面为游戏官方介绍页。最新版本 0.0.23，包名 com.thns.tao_heart_nurture_spirit。
       游戏纯本地运行，不设在线服务器。
     </p>
     <p class="foot-stats">访问量 <span id="busuanzi_value_site_pv"></span> · 访客数 <span id="busuanzi_value_site_uv"></span></p>
@@ -1075,6 +1216,56 @@ footer{
       }
     });
   });
+  /* ---- 反馈模板生成器：实时生成 + 一键复制（clipboard 优先，execCommand 降级） ---- */
+  var fbModule = document.getElementById('fbModule');
+  var fbCommon = document.getElementById('fbCommon');
+  var fbDesc = document.getElementById('fbDesc');
+  var fbOut = document.getElementById('fbOut');
+  var fbCopy = document.getElementById('fbCopy');
+  function fbBuild(){
+    if (!fbModule || !fbDesc || !fbOut) return;
+    var desc = (fbDesc.value || '').trim();
+    if (!desc) desc = '（在此补充你遇到的具体问题，以及是怎么操作时出现的）';
+    fbOut.textContent = '【功能模块】' + fbModule.value +
+      '\n【问题状况】' + desc +
+      '\n【设备版本】此处可补充设备型号与系统版本';
+  }
+  function fbLegacyCopy(done){
+    var ta = document.createElement('textarea');
+    ta.value = fbOut.textContent;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      done();
+    } catch (e) {
+      showToast('复制失败，请手动选中下方文案复制');
+    }
+    document.body.removeChild(ta);
+  }
+  if (fbModule && fbDesc && fbOut && fbCopy) {
+    fbModule.addEventListener('change', fbBuild);
+    fbDesc.addEventListener('input', fbBuild);
+    fbCommon.addEventListener('change', function(){
+      if (fbCommon.value) {
+        fbDesc.value = fbCommon.value + '：';
+        fbDesc.focus();
+      }
+      fbBuild();
+    });
+    fbCopy.addEventListener('click', function(){
+      var text = fbOut.textContent;
+      var done = function(){ showToast('复制成功，请粘贴到下方反馈入口'); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(function(){ fbLegacyCopy(done); });
+      } else {
+        fbLegacyCopy(done);
+      }
+    });
+    fbBuild();
+  }
 })();
 </script>
 <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

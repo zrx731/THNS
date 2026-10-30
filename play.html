@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>玩法介绍 · 道心衍灵 0.0.23 — 安卓单机修仙游戏</title>
+<meta name="description" content="道心衍灵（0.0.23）玩法介绍：修行境界、秘境探索、回合制战斗、灵识对谈、渡劫心魔、道途抉择、丹道配比。" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2316241e'/%3E%3Cpath d='M7 22 L13 11 L18 18 L21 14 L25 22 Z' fill='none' stroke='%23c09a4e' stroke-width='1.8' stroke-linejoin='round'/%3E%3Ccircle cx='22' cy='9' r='2.2' fill='%233e7d6b'/%3E%3C/svg%3E" />
+<style>
+:root{
+  --ink:#17201b;
+  --ink-2:#1e2a23;
+  --ink-3:#2a3a31;
+  --paper:#f6f3ea;
+  --paper-2:#efe9da;
+  --inkwash:#e7ece3;
+  --brand:#3a6b56;
+  --brand-deep:#2b5443;
+  --brand-soft:rgba(58,107,86,.10);
+  --cinnabar:#a8442c;
+  --gold-soft:#d9c9a0;
+  --gold-soft-2:#e8dcba;
+  --text:#262b26;
+  --muted:#647069;
+  --text-on-dark:#ece8dc;
+  --muted-on-dark:#9aa89e;
+  --hairline-dark:rgba(236,232,220,.16);
+  --hairline-light:#e0d9c6;
+  --serif:"Kaiti SC","STKaiti","KaiTi","楷体","Noto Serif CJK SC","Source Han Serif SC","SimSun",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{
+  font-family:var(--sans);font-size:15px;line-height:1.75;color:var(--text);
+  background:var(--paper);-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:2px}
+.wrap{width:100%;max-width:1080px;margin:0 auto;padding:0 20px}
+
+/* 导航（与首页一致） */
+.nav{position:sticky;top:0;z-index:100;background:var(--ink);border-bottom:1px solid var(--hairline-dark)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:52px;max-width:1080px;margin:0 auto;padding:0 16px}
+.brand{display:flex;align-items:center;gap:9px;color:var(--text-on-dark);font-family:var(--serif);font-size:17px;letter-spacing:.08em;min-height:44px}
+.brand svg{flex:none}
+.brand small{font-family:var(--sans);font-size:10px;letter-spacing:.08em;color:var(--muted-on-dark)}
+.nav-links{display:none;gap:22px;align-items:center;list-style:none}
+.nav-links a{color:var(--muted-on-dark);font-size:14px;padding:6px 2px;border-bottom:1px solid transparent;min-height:44px;display:inline-flex;align-items:center}
+.nav-links a:hover{color:var(--text-on-dark);border-bottom-color:var(--gold-soft)}
+.nav-links a.active{color:var(--text-on-dark);border-bottom-color:var(--cinnabar)}
+.nav-back{background:var(--gold-soft);color:var(--ink);font-size:13px;font-weight:600;letter-spacing:.05em;padding:8px 18px;border-radius:980px;min-height:44px;display:inline-flex;align-items:center}
+.nav-back:hover{background:var(--gold-soft-2)}
+
+/* 页头小 Hero */
+.page-head{
+  background:linear-gradient(180deg,rgba(23,32,27,.92),rgba(23,32,27,.96)),
+    url('assets/hero.jpg') center 30%/cover no-repeat,var(--ink);
+  color:var(--text-on-dark);text-align:center;padding:72px 20px 56px;
+}
+.page-head .eyebrow{font-size:12px;letter-spacing:.26em;color:var(--gold-soft);margin-bottom:14px}
+.page-head h1{font-family:var(--serif);font-size:36px;line-height:1.25;letter-spacing:.06em;margin-bottom:10px;color:#fbf7ec}
+.page-head p{font-size:15px;line-height:1.9;max-width:620px;margin:0 auto;color:var(--muted-on-dark)}
+
+section{padding:56px 0}
+.eyebrow{font-size:12px;letter-spacing:.22em;margin-bottom:14px}
+.headline{font-family:var(--serif);font-size:28px;line-height:1.3;font-weight:700;letter-spacing:.06em;margin-bottom:16px}
+.intro{font-size:15px;line-height:1.9;max-width:640px}
+.head-center{text-align:center}
+.head-center .intro{margin:0 auto}
+.bg-paper{background:var(--paper);color:var(--text)}
+.bg-paper .eyebrow{color:var(--brand)}
+.bg-paper .headline{color:var(--text)}
+.bg-paper .intro{color:var(--muted)}
+.bg-inkwash{background:var(--inkwash);color:var(--text)}
+.bg-inkwash .eyebrow{color:var(--brand)}
+.bg-inkwash .headline{color:var(--text)}
+.bg-inkwash .intro{color:var(--muted)}
+.bg-paper2{background:var(--paper-2);color:var(--text)}
+.bg-paper2 .eyebrow{color:var(--brand)}
+.bg-paper2 .headline{color:var(--text)}
+.bg-paper2 .intro{color:var(--muted)}
+
+/* 系统卡片 */
+.sys-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:40px}
+.sys{
+  height:100%;border:1px solid var(--hairline-light);background:#fff;border-radius:16px;padding:26px 22px;
+}
+.sys-tag{font-family:var(--serif);font-size:13px;color:var(--cinnabar);letter-spacing:.14em;margin-bottom:10px}
+.sys h3{font-family:var(--serif);font-size:19px;letter-spacing:.05em;margin-bottom:10px;color:var(--text)}
+.sys h4{font-size:13px;letter-spacing:.1em;color:var(--brand-deep);margin:14px 0 6px}
+.sys p{font-size:14px;line-height:1.9;color:var(--muted)}
+.sys p strong{color:var(--brand-deep);font-weight:600}
+.sys ul{list-style:none;margin-top:6px}
+.sys li{font-size:14px;color:var(--muted);line-height:1.9;padding-left:16px;position:relative}
+.sys li::before{content:"·";position:absolute;left:4px;color:var(--cinnabar)}
+
+/* 设计初衷与红线 */
+.note{
+  margin-top:40px;border-left:3px solid var(--gold-soft);padding:6px 0 6px 22px;max-width:760px;
+}
+.note p{font-size:15px;line-height:2;color:var(--text);margin-bottom:12px}
+.redlines{margin-top:40px;border-top:1px solid var(--hairline-light)}
+.redline{display:flex;gap:18px;align-items:baseline;padding:18px 4px;border-bottom:1px solid var(--hairline-light)}
+.redline:last-child{border-bottom:none}
+.redline-glyph{font-family:var(--serif);color:var(--brand);font-size:18px;flex:none;width:1.6em}
+.redline-glyph.forbid{color:var(--cinnabar)}
+.redline h3{font-size:16px;letter-spacing:.05em;margin-bottom:4px}
+.redline p{font-size:14px;color:var(--muted);line-height:1.8}
+
+footer{background:var(--ink);color:var(--muted-on-dark);border-top:1px solid var(--hairline-dark);padding:32px 0 40px;font-size:12.5px;line-height:1.9}
+.foot-links{display:flex;flex-wrap:wrap;gap:8px 22px;margin-bottom:16px;list-style:none}
+.foot-links a{color:var(--muted-on-dark);min-height:44px;display:inline-flex;align-items:center}
+.foot-links a:hover{color:var(--text-on-dark)}
+.foot-fine{max-width:680px}
+
+@media (min-width:768px){
+  body{font-size:16px}
+  section{padding:80px 0}
+  .nav-links{display:flex}
+  .page-head{padding:100px 20px 80px}
+  .page-head h1{font-size:52px}
+  .headline{font-size:36px}
+  .intro{font-size:16px}
+  .sys-grid{grid-template-columns:repeat(2,1fr);gap:20px;margin-top:56px}
+}
+@media (min-width:1024px){
+  .sys-grid{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="道心衍灵 首页">
+      <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="#16241e"/>
+        <path d="M7 22 L13 11 L18 18 L21 14 L25 22 Z" fill="none" stroke="#c09a4e" stroke-width="1.8" stroke-linejoin="round"/>
+        <circle cx="22" cy="9" r="2.2" fill="#3e7d6b"/>
+      </svg>
+      <span>道心衍灵<small> Tao Heart Nurture Spirit</small></span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="play.html" class="active">玩法介绍</a></li>
+      <li><a href="index.html#download">下载</a></li>
+      <li><a href="index.html#contact">反馈</a></li>
+    </ul>
+    <a class="nav-back" href="index.html">返回首页</a>
+  </div>
+</header>
+
+<div class="page-head">
+  <p class="eyebrow">玩法介绍 · 对应版本 0.0.23</p>
+  <h1>这一局，到底有哪些事可以做</h1>
+  <p>下面只讲当前版本里<strong style="color:var(--gold-soft)">已经实装</strong>的系统。每一项都写清楚"怎么玩"和"它的特色"，没有概念宣传，也没有规划中的东西。</p>
+</div>
+
+<!-- 修行与境界 + 渡劫心魔 -->
+<section class="bg-paper">
+  <div class="wrap">
+    <div class="head-center">
+      <p class="eyebrow">修行之路</p>
+      <h2 class="headline">一、修行与境界</h2>
+      <p class="intro">修行有明确的六境之分，每一步突破都由你亲手完成，不是挂机等数值。</p>
+    </div>
+    <div class="sys-grid">
+      <article class="sys">
+        <p class="sys-tag">系统其一</p>
+        <h3>修行与境界</h3>
+        <h4>怎么玩</h4>
+        <p>境界分六重：<strong>凡、灵、仙、圣、神、道源</strong>。每一世从凡境起步，在探索与抉择中积累修为，条件具足后亲手触发<strong>突破</strong>，进入下一境。没有经验条在后台自己涨。</p>
+        <h4>特色</h4>
+        <ul>
+          <li>突破要过<strong>渡劫</strong>这一关，成败直接影响道心纯度</li>
+          <li>道心纯度越高，修行越稳；纯度低则<strong>心魔</strong>易起</li>
+          <li>全程没有战力数字、没有等级榜，境界只记录你走到了哪一步</li>
+        </ul>
+      </article>
+      <article class="sys">
+        <p class="sys-tag">系统其二</p>
+        <h3>渡劫与心魔</h3>
+        <h4>怎么玩</h4>
+        <p>每次突破都要面对<strong>渡劫</strong>。渡劫成功，道心纯度提升；渡劫失败，道心受损、心魔随之高涨。心魔高涨时，灵识会进入专门的<strong>对谈场景</strong>陪你疏解。</p>
+        <h4>特色</h4>
+        <ul>
+          <li>渡劫不是数值小游戏，是一次需要你亲自做选择的心境考验</li>
+          <li>心魔会在对谈、抉择中以具体情境冒出来，而不是一个抽象数值</li>
+          <li>疏解心魔靠对谈与正向引导，不靠"点按钮清零"</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 秘境 + 战斗 -->
+<section class="bg-inkwash">
+  <div class="wrap">
+    <div class="head-center">
+      <p class="eyebrow">探索与战斗</p>
+      <h2 class="headline">二、秘境探索与回合制战斗</h2>
+      <p class="intro">秘境是这一世获取资源的主要去处，遭遇敌人时进入回合制战斗，每一步都由你亲自出招。</p>
+    </div>
+    <div class="sys-grid">
+      <article class="sys">
+        <p class="sys-tag">系统其三</p>
+        <h3>秘境探索</h3>
+        <h4>怎么玩</h4>
+        <p>秘境由 <strong>6 个探索节点</strong>串成。逐节点推进，途中可收集<strong>灵石、灵草、矿石</strong>等资源；部分节点会遭遇敌人，进入战斗。</p>
+        <h4>特色</h4>
+        <ul>
+          <li>资源是炼丹的原料，探索与丹道互相衔接</li>
+          <li>固定俯视角，触摸旋转在本版本被严格关闭，观感稳定</li>
+          <li>没有刷材料的重复地牢，每个节点一次推进</li>
+        </ul>
+      </article>
+      <article class="sys">
+        <p class="sys-tag">系统其四</p>
+        <h3>回合制战斗</h3>
+        <h4>怎么玩</h4>
+        <p>战斗为回合制，你的行动有四种：<strong>攻击、秘术、防守、丹药</strong>。敌人自带机制：<strong>护体罡气</strong>会挡普通攻击、<strong>道心攻心</strong>会动摇你的心境、<strong>狂暴</strong>在特定回合触发。</p>
+        <h4>特色</h4>
+        <ul>
+          <li>0.0.23 起敌人按<strong>三种类型模板</strong>差异化设计，平均强度与基线持平，无数值碾压</li>
+          <li>丹药是战斗中的一个正经选项，不是血瓶快捷键</li>
+          <li>没有"战力碾压"：靠机制理解与策略赢，不靠数值堆</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 灵识对谈 + 道途抉择 -->
+<section class="bg-paper2">
+  <div class="wrap">
+    <div class="head-center">
+      <p class="eyebrow">灵识与心境</p>
+      <h2 class="headline">三、灵识对谈与道途抉择</h2>
+      <p class="intro">灵识是住在你手机里的端侧 AI，它陪你聊天、推演，但永远不替你拿主意。</p>
+    </div>
+    <div class="sys-grid">
+      <article class="sys">
+        <p class="sys-tag">系统其五</p>
+        <h3>灵识对谈</h3>
+        <h4>怎么玩</h4>
+        <p>对谈界面有六个场景标签：<strong>悟道前、秘境前、渡劫前、心魔高涨、抉择后、空闲独白</strong>。你也可以不挑场景，直接<strong>自由对谈</strong>；遇到意境时，会给出<strong>悟道三选项</strong>让你选一边。</p>
+        <h4>特色</h4>
+        <ul>
+          <li>0.0.23 起横屏下为<strong>双栏布局</strong>，并对对话数据做了清洗，长对谈更清爽</li>
+          <li>全部在端侧运行（llama.cpp），不上传任何对谈内容</li>
+          <li>它只解释、只陪伴，岔路口的选择永远是你自己下</li>
+        </ul>
+      </article>
+      <article class="sys">
+        <p class="sys-tag">系统其六</p>
+        <h3>道途抉择</h3>
+        <h4>怎么玩</h4>
+        <p>岔路口的每次选择，都会沿<strong>四轴倾向</strong>累积：<strong>刚毅、逍遥、慈悲、执念</strong>。倾向走到不同方向，会拿到对应的<strong>道途称号</strong>：磐石道心 / 云水道人 / 仁者之心 / 精诚所至。</p>
+        <h4>特色</h4>
+        <ul>
+          <li>0.0.23 起为道途抉择先行版：抉择反馈不仅说结果，还附<strong>正向道德启迪</strong></li>
+          <li>称号是你心境的镜像，没有排行、没有收集目标</li>
+          <li>没有"正确答案"，但每一次取舍都会被认真对待</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 丹道配比 -->
+<section class="bg-paper">
+  <div class="wrap">
+    <div class="head-center">
+      <p class="eyebrow">炼丹</p>
+      <h2 class="headline">四、丹药与丹道配比</h2>
+      <p class="intro">0.0.23 新加入的系统：用秘境采来的灵草，亲手配出一炉丹药。</p>
+    </div>
+    <div class="sys-grid">
+      <article class="sys">
+        <p class="sys-tag">系统其七</p>
+        <h3>丹道配比</h3>
+        <h4>怎么玩</h4>
+        <p>把秘境收集到的<strong>灵草</strong>按配方投入，亲手配比对，炼成丹药。丹药可以在战斗中作为行动选项使用。</p>
+        <h4>特色</h4>
+        <ul>
+          <li><strong>失败不受任何惩罚</strong>：配错了不会扣资源、不会掉心境</li>
+          <li>全程<strong>确定性、无随机</strong>：同一配比结果一致，没有"看脸"</li>
+          <li>探索（采灵草）与战斗（用丹药）由此串成一条线</li>
+        </ul>
+      </article>
+      <article class="sys">
+        <p class="sys-tag">设计初衷</p>
+        <h3>为什么做这些</h3>
+        <p>这一版所有新内容——道途抉择的道德启迪、灵识对谈的正向疏解、丹道配比的零惩罚设计——指向同一个初衷：<strong>帮助玩家在游戏中不违反道德，并主动传递正向价值，提升道德素养</strong>。修仙不是比谁的数字大，是修自己这颗心。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 红线 -->
+<section class="bg-inkwash">
+  <div class="wrap">
+    <div class="head-center">
+      <p class="eyebrow">先说好什么不做</p>
+      <h2 class="headline">贯穿全版本的三条红线</h2>
+    </div>
+    <div class="redlines">
+      <div class="redline">
+        <span class="redline-glyph forbid">禁</span>
+        <div><h3>无数值碾压</h3><p>敌人类型差异化但平均强度与基线持平，不做等级榜、不做战力数值，强弱由策略与心境决定。</p></div>
+      </div>
+      <div class="redline">
+        <span class="redline-glyph forbid">禁</span>
+        <div><h3>无代劳</h3><p>没有托管、没有"一键修行"。突破、选择、炼丹、出招，每一步都必须是你亲手完成。</p></div>
+      </div>
+      <div class="redline">
+        <span class="redline-glyph forbid">禁</span>
+        <div><h3>无机械重复</h3><p>没有刷材料的无穷点点点。丹道配比失败零惩罚，探索节点一次推进，不制造重复劳动。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <ul class="foot-links" role="list">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="play.html">玩法介绍</a></li>
+      <li><a href="index.html#changelog">更新日志</a></li>
+      <li><a href="index.html#history">历史版本</a></li>
+      <li><a href="index.html#contact">联系反馈</a></li>
+      <li><a href="index.html#download">下载</a></li>
+    </ul>
+    <p class="foot-fine">
+      道心衍灵 · Tao Heart Nurture Spirit —— 安卓单机修仙游戏。本页内容对应 0.0.23 已实装系统，未实装内容不在此介绍。
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

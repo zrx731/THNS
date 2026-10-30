@@ -110,6 +110,20 @@ section{padding:56px 0}
 .redline h3{font-size:16px;letter-spacing:.05em;margin-bottom:4px}
 .redline p{font-size:14px;color:var(--muted);line-height:1.8}
 
+/* 锚点导航 */
+.chips{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+  padding:20px 20px 0;max-width:1080px;margin:0 auto;
+}
+.chip{
+  padding:8px 16px;min-height:44px;border-radius:980px;
+  border:1px solid var(--hairline-light);background:#fff;
+  font-size:13px;letter-spacing:.04em;color:var(--brand-deep);
+  display:inline-flex;align-items:center;transition:border-color .2s ease,background .2s ease;
+}
+.chip:hover{border-color:var(--brand);background:var(--brand-soft)}
+section,.sys{scroll-margin-top:64px}
+
 footer{background:var(--ink);color:var(--muted-on-dark);border-top:1px solid var(--hairline-dark);padding:32px 0 40px;font-size:12.5px;line-height:1.9}
 .foot-links{display:flex;flex-wrap:wrap;gap:8px 22px;margin-bottom:16px;list-style:none}
 .foot-links a{color:var(--muted-on-dark);min-height:44px;display:inline-flex;align-items:center}
@@ -159,6 +173,17 @@ footer{background:var(--ink);color:var(--muted-on-dark);border-top:1px solid var
   <p>下面只讲当前版本里<strong style="color:var(--gold-soft)">已经实装</strong>的系统。每一项都写清楚"怎么玩"和"它的特色"，没有概念宣传，也没有规划中的东西。</p>
 </div>
 
+<nav class="chips" aria-label="系统锚点导航">
+  <a class="chip" href="#sys-realm">修行境界</a>
+  <a class="chip" href="#sys-trib">渡劫心魔</a>
+  <a class="chip" href="#sys-dungeon">秘境探索</a>
+  <a class="chip" href="#sys-battle">回合战斗</a>
+  <a class="chip" href="#sys-lingshi">灵识对谈</a>
+  <a class="chip" href="#sys-path">道途抉择</a>
+  <a class="chip" href="#sys-alchemy">丹道配比</a>
+  <a class="chip" href="#sys-redline">设计红线</a>
+</nav>
+
 <!-- 修行与境界 + 渡劫心魔 -->
 <section class="bg-paper">
   <div class="wrap">
@@ -168,7 +193,7 @@ footer{background:var(--ink);color:var(--muted-on-dark);border-top:1px solid var
       <p class="intro">修行有明确的六境之分，每一步突破都由你亲手完成，不是挂机等数值。</p>
     </div>
     <div class="sys-grid">
-      <article class="sys">
+      <article class="sys" id="sys-realm">
         <p class="sys-tag">系统其一</p>
         <h3>修行与境界</h3>
         <h4>怎么玩</h4>
@@ -180,7 +205,7 @@ footer{background:var(--ink);color:var(--muted-on-dark);border-top:1px solid var
           <li>全程没有战力数字、没有等级榜，境界只记录你走到了哪一步</li>
         </ul>
       </article>
-      <article class="sys">
+      <article class="sys" id="sys-trib">
         <p class="sys-tag">系统其二</p>
         <h3>渡劫与心魔</h3>
         <h4>怎么玩</h4>
@@ -205,7 +230,7 @@ footer{background:var(--ink);color:var(--muted-on-dark);border-top:1px solid var
       <p class="intro">秘境是这一世获取资源的主要去处，遭遇敌人时进入回合制战斗，每一步都由你亲自出招。</p>
     </div>
     <div class="sys-grid">
-      <article class="sys">
+      <article class="sys" id="sys-dungeon">
         <p class="sys-tag">系统其三</p>
         <h3>秘境探索</h3>
         <h4>怎么玩</h4>
@@ -217,7 +242,7 @@ footer{background:var(--ink);color:var(--muted-on-dark);border-top:1px solid var
           <li>没有刷材料的重复地牢，每个节点一次推进</li>
         </ul>
       </article>
-      <article class="sys">
+      <article class="sys" id="sys-battle">
         <p class="sys-tag">系统其四</p>
         <h3>回合制战斗</h3>
         <h4>怎么玩</h4>
@@ -242,7 +267,7 @@ footer{background:var(--ink);color:var(--muted-on-dark);border-top:1px solid var
       <p class="intro">灵识是住在你手机里的端侧 AI，它陪你聊天、推演，但永远不替你拿主意。</p>
     </div>
     <div class="sys-grid">
-      <article class="sys">
+      <article class="sys" id="sys-lingshi">
         <p class="sys-tag">系统其五</p>
         <h3>灵识对谈</h3>
         <h4>怎么玩</h4>
@@ -254,7 +279,7 @@ footer{background:var(--ink);color:var(--muted-on-dark);border-top:1px solid var
           <li>它只解释、只陪伴，岔路口的选择永远是你自己下</li>
         </ul>
       </article>
-      <article class="sys">
+      <article class="sys" id="sys-path">
         <p class="sys-tag">系统其六</p>
         <h3>道途抉择</h3>
         <h4>怎么玩</h4>
@@ -279,7 +304,7 @@ footer{background:var(--ink);color:var(--muted-on-dark);border-top:1px solid var
       <p class="intro">0.0.23 新加入的系统：用秘境采来的灵草，亲手配出一炉丹药。</p>
     </div>
     <div class="sys-grid">
-      <article class="sys">
+      <article class="sys" id="sys-alchemy">
         <p class="sys-tag">系统其七</p>
         <h3>丹道配比</h3>
         <h4>怎么玩</h4>
@@ -301,7 +326,7 @@ footer{background:var(--ink);color:var(--muted-on-dark);border-top:1px solid var
 </section>
 
 <!-- 红线 -->
-<section class="bg-inkwash">
+<section class="bg-inkwash" id="sys-redline">
   <div class="wrap">
     <div class="head-center">
       <p class="eyebrow">先说好什么不做</p>

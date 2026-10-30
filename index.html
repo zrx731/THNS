@@ -131,6 +131,18 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 @keyframes thns-mist1{from{transform:translate(0,0);opacity:.55}to{transform:translate(36px,-10px);opacity:1}}
 @keyframes thns-mist2{from{transform:translate(0,0);opacity:1}to{transform:translate(-30px,12px);opacity:.55}}
 @keyframes thns-mist3{from{transform:translate(0,0);opacity:.6}to{transform:translate(24px,-14px);opacity:1}}
+/* 水墨浮尘粒子（纯 transform/opacity，GPU 友好） */
+.particle{
+  position:absolute;z-index:1;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(232,220,186,.55),transparent 70%);
+}
+.p1{width:8px;height:8px;left:18%;top:30%;animation:thns-float1 9s ease-in-out infinite}
+.p2{width:6px;height:6px;left:70%;top:24%;animation:thns-float2 11s ease-in-out infinite}
+.p3{width:10px;height:10px;left:40%;top:64%;animation:thns-float3 13s ease-in-out infinite}
+.p4{width:5px;height:5px;left:85%;top:55%;animation:thns-float1 10s ease-in-out infinite reverse}
+@keyframes thns-float1{0%,100%{transform:translate(0,0);opacity:.35}50%{transform:translate(14px,-22px);opacity:.85}}
+@keyframes thns-float2{0%,100%{transform:translate(0,0);opacity:.3}50%{transform:translate(-18px,-14px);opacity:.75}}
+@keyframes thns-float3{0%,100%{transform:translate(0,0);opacity:.25}50%{transform:translate(10px,16px);opacity:.65}}
 .hero-inner{position:relative;z-index:2;padding:120px 20px 56px;max-width:820px;margin:0 auto;width:100%}
 .hero-eyebrow{
   font-size:13px;letter-spacing:.26em;color:var(--gold-soft);
@@ -163,6 +175,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .hero-lead{animation-delay:.46s}
 .hero-btns{animation-delay:.58s}
 @keyframes thns-fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.hero h1{animation:thns-fadeUp .6s ease-out .22s both, thns-titleGlow 6s ease-in-out 1.6s infinite}
+@keyframes thns-titleGlow{
+  0%,100%{text-shadow:0 2px 8px rgba(10,14,12,.6),0 6px 34px rgba(10,14,12,.55)}
+  50%{text-shadow:0 2px 10px rgba(10,14,12,.55),0 6px 30px rgba(232,220,186,.30)}
+}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;
   min-height:48px;padding:12px 28px;border-radius:980px;
@@ -170,6 +187,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   transition:background .25s ease,color .25s ease,transform .25s ease;
 }
 .btn:hover{transform:translateY(-1px)}
+.btn:active{transform:translateY(1px) scale(.97)}
 .btn-primary{background:var(--brand);color:#fff;font-weight:600}
 .btn-primary:hover{background:var(--brand-deep)}
 .btn-ghost{border:1px solid var(--ink-3);color:var(--text)}
@@ -237,9 +255,9 @@ section{padding:64px 0}
   border-radius:16px;padding:28px 24px;
   background:#fff;
   border:1px solid var(--hairline-light);
-  transition:transform .25s ease,box-shadow .25s ease;
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
 }
-.card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(23,32,27,.12)}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(23,32,27,.12);border-color:rgba(58,107,86,.5)}
 .card-icon{
   width:44px;height:44px;border-radius:10px;
   background:var(--brand-soft);
@@ -264,9 +282,9 @@ section{padding:64px 0}
   border:1px solid var(--hairline-light);
   background:#fff;
   border-radius:16px;padding:24px 20px;
-  transition:transform .25s ease,box-shadow .25s ease;
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
 }
-.step5:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(23,32,27,.12)}
+.step5:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(23,32,27,.12);border-color:rgba(58,107,86,.5)}
 .step5-num{
   font-family:var(--serif);font-size:13px;color:var(--cinnabar);
   letter-spacing:.14em;margin-bottom:10px;
@@ -287,9 +305,9 @@ section{padding:64px 0}
   border:1px solid var(--hairline-light);
   background:#fff;
   border-radius:16px;padding:26px 22px;
-  transition:transform .25s ease,box-shadow .25s ease;
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
 }
-.dao-step:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(23,32,27,.12)}
+.dao-step:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(23,32,27,.12);border-color:rgba(58,107,86,.5)}
 .dao-num{
   font-family:var(--serif);font-size:22px;color:var(--cinnabar);
   letter-spacing:.08em;margin-bottom:10px;
@@ -310,7 +328,9 @@ section{padding:64px 0}
   background:var(--ink-2);
   border:1px solid rgba(217,201,160,.32);
   border-radius:16px;padding:26px 22px;
+  transition:transform .25s ease,border-color .25s ease;
 }
+.lingshi-card:hover{transform:translateY(-4px);border-color:rgba(217,201,160,.65)}
 .lingshi-card h3{
   font-family:var(--serif);color:var(--gold-soft);
   font-size:18px;letter-spacing:.05em;margin-bottom:10px;
@@ -651,6 +671,10 @@ footer{
   <div class="mist mist-1" aria-hidden="true"></div>
   <div class="mist mist-2" aria-hidden="true"></div>
   <div class="mist mist-3" aria-hidden="true"></div>
+  <span class="particle p1" aria-hidden="true"></span>
+  <span class="particle p2" aria-hidden="true"></span>
+  <span class="particle p3" aria-hidden="true"></span>
+  <span class="particle p4" aria-hidden="true"></span>
   <div class="hero-inner">
     <p class="hero-eyebrow">安卓单机修仙 · 国风仙侠版</p>
     <h1>道心衍灵</h1>

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>玩法介绍 · 道心衍灵 0.0.24 — 安卓单机修仙游戏</title>
-<meta name="description" content="道心衍灵（0.0.24）玩法介绍：修行境界、秘境探索、回合制战斗、灵识对谈、渡劫心魔、道途抉择、丹道配比、成就体系、心魔试炼塔。" />
+<title>玩法介绍 · 道心衍灵 0.0.25 — 安卓单机修仙游戏</title>
+<meta name="description" content="道心衍灵（0.0.25）玩法介绍：修行境界、秘境探索、回合制战斗、灵识对谈、渡劫心魔、道途抉择、丹道配比、成就体系、心魔试炼塔、灵兽相伴、洞府、灵田、炼器、渡劫分支。" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2316241e'/%3E%3Cpath d='M7 22 L13 11 L18 18 L21 14 L25 22 Z' fill='none' stroke='%23c09a4e' stroke-width='1.8' stroke-linejoin='round'/%3E%3Ccircle cx='22' cy='9' r='2.2' fill='%233e7d6b'/%3E%3C/svg%3E" />
 <style>
 :root{
@@ -180,7 +180,7 @@ footer{background:var(--ink);color:var(--muted-on-dark);border-top:1px solid var
 </header>
 
 <div class="page-head">
-  <p class="eyebrow">玩法介绍 · 对应版本 0.0.24</p>
+  <p class="eyebrow">玩法介绍 · 对应版本 0.0.25</p>
   <h1>这一局，到底有哪些事可以做</h1>
   <p>下面只讲当前版本里<strong style="color:var(--gold-soft)">已经实装</strong>的系统。每一项都写清楚"怎么玩"和"它的特色"，没有概念宣传，也没有规划中的东西。</p>
 </div>
@@ -376,6 +376,79 @@ footer{background:var(--ink);color:var(--muted-on-dark);border-top:1px solid var
   </div>
 </section>
 
+<!-- 山居新章：洞府 / 灵田 / 灵兽 / 炼器 / 渡劫分支（0.0.25 新增） -->
+<section class="bg-paper">
+  <div class="wrap">
+    <div class="head-center">
+      <p class="eyebrow">山居新章</p>
+      <h2 class="headline">六、洞府 · 灵田 · 灵兽 · 炼器 · 渡劫（0.0.25 新增）</h2>
+      <p class="intro">0.0.25 起，修行多了一方山居天地：有灵兽相伴、有灵田可耕、有炉火可炼，渡劫之前还要先过心魔一问。都围绕同一个初衷——修的不是数字，是这颗心。</p>
+    </div>
+    <div class="sys-grid">
+      <article class="sys" id="sys-beast">
+        <p class="sys-tag">系统其十</p>
+        <h3>灵兽相伴</h3>
+        <h4>怎么玩</h4>
+        <p>秘境相遇、疗伤收留，入住灵兽舍。之后可以<strong>喂食、对话、静坐</strong>三样互动，羁绊随相处渐长（纯荣誉，0–100）。灵兽只陪伴、不参战，AI 只谈生活、不代做、不评判。</p>
+        <h4>特色</h4>
+        <ul>
+          <li>羁绊是相处积累的见证，不附带任何战斗属性</li>
+          <li>陪伴而非代劳：所有修行仍须你亲手完成</li>
+        </ul>
+      </article>
+      <article class="sys" id="sys-cave">
+        <p class="sys-tag">系统其十一</p>
+        <h3>洞府</h3>
+        <h4>怎么玩</h4>
+        <p>一方山居 3D 洞府，四个功能位与六枚摆件可自由挂取，纯装饰、纯心境。</p>
+        <h4>特色</h4>
+        <ul>
+          <li>摆件只装点不挂数值，不被「战力」绑架</li>
+        </ul>
+      </article>
+      <article class="sys" id="sys-field">
+        <p class="sys-tag">系统其十二</p>
+        <h3>灵田</h3>
+        <h4>怎么玩</h4>
+        <p>三畦灵田，三种种子（灵谷草 / 紫灵芝 / 冰莲子）按<strong>真实时间</strong>生长（2 / 6 / 12 时辰）。按时照料，成熟后手动收获，入丹道配比。</p>
+        <h4>特色</h4>
+        <ul>
+          <li>照料有窗口期，不鼓励连点狂刷</li>
+          <li>种子来自收获回赠与秘境探索，来源闭环</li>
+        </ul>
+      </article>
+      <article class="sys" id="sys-forge">
+        <p class="sys-tag">系统其十三</p>
+        <h3>炼器</h3>
+        <h4>怎么玩</h4>
+        <p>选材 → 控火候 → 二选一定性 → 成品或炸炉（只损矿石、不损道心）。成品法宝可佩戴，词缀在战斗中临时生效（2–3%，封顶 5%）。</p>
+        <h4>特色</h4>
+        <ul>
+          <li>失败无道心惩罚，鼓励尝试而不是畏惧</li>
+          <li>法宝可列表选换佩戴，新炼自动生效</li>
+        </ul>
+      </article>
+      <article class="sys" id="sys-trib">
+        <p class="sys-tag">系统其十四</p>
+        <h3>渡劫分支</h3>
+        <h4>怎么玩</h4>
+        <p>渡劫之前，先过心魔一问：情境之中，你选<strong>刚毅、慈悲还是逍遥</strong>？AI 只出题、不代选，选择只记入你的道途与道历。</p>
+        <h4>特色</h4>
+        <ul>
+          <li>心魔情境以正向道德启迪收束，选择无惩罚</li>
+          <li>每一次抉择都是对心性的观照，不是数值最优解</li>
+        </ul>
+      </article>
+      <article class="sys" id="sys-ui">
+        <p class="sys-tag">界面与更新</p>
+        <h3>界面优化与检查更新</h3>
+        <h4>怎么玩</h4>
+        <p>灵识对谈：左侧栏可滚动、输入框加高，底部文字不再被裁；对话框半透明，透出水墨背景。设置页新增手动「检查更新」，三态反馈一目了然。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- 红线 -->
 <section class="bg-inkwash" id="sys-redline">
   <div class="wrap">
@@ -411,7 +484,7 @@ footer{background:var(--ink);color:var(--muted-on-dark);border-top:1px solid var
       <li><a href="index.html#download">下载</a></li>
     </ul>
     <p class="foot-fine">
-      道心衍灵 · Tao Heart Nurture Spirit —— 安卓单机修仙游戏。本页内容对应 0.0.24 已实装系统，未实装内容不在此介绍。
+      道心衍灵 · Tao Heart Nurture Spirit —— 安卓单机修仙游戏。本页内容对应 0.0.25 已实装系统，未实装内容不在此介绍。
     </p>
   </div>
 </footer>
